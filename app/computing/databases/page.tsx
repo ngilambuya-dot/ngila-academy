@@ -20,37 +20,44 @@ export default async function DatabasesPage() {
                 </div>
 
                 <div className="space-y-3">
-                    {lessons.map((lesson, index) => (
-                        <Link
-                            key={lesson.slug}
-                            href={`/computing/databases/${lesson.slug}`}
-                            className="block bg-white dark:bg-gray-800 p-4 rounded-lg border hover:border-purple-500 transition group"
-                        >
-                            <div className="flex items-start gap-4">
-                                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-sm font-bold text-purple-600">
-                                    {String(index + 1).padStart(2, '0')}
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="font-semibold group-hover:text-purple-600 transition">
-                                        {lesson.title}
-                                    </h3>
-                                    <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mt-1">
-                                        <span className="flex items-center gap-1">
-                                            <Clock size={14} />
-                                            {lesson.duration || '10 min'}
-                                        </span>
-                                        <span className="flex items-center gap-1">
-                                            <BookOpen size={14} />
-                                            Lesson
-                                        </span>
+                    {lessons.length > 0 ? (
+                        lessons.map((lesson, index) => (
+                            <Link
+                                key={lesson.slug}
+                                href={`/computing/databases/${lesson.slug}`}
+                                className="block bg-white dark:bg-gray-800 p-4 rounded-lg border hover:border-purple-500 transition group"
+                            >
+                                <div className="flex items-start gap-4">
+                                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-sm font-bold text-purple-600">
+                                        {String(index + 1).padStart(2, '0')}
+                                    </div>
+                                    <div className="flex-1">
+                                        <h3 className="font-semibold group-hover:text-purple-600 transition">
+                                            {lesson.title}
+                                        </h3>
+                                        <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mt-1">
+                                            <span className="flex items-center gap-1">
+                                                <Clock size={14} />
+                                                {lesson.duration || '10 min'}
+                                            </span>
+                                            <span className="flex items-center gap-1">
+                                                <BookOpen size={14} />
+                                                Lesson
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="flex-shrink-0 text-gray-400 group-hover:text-purple-600 transition">
+                                        →
                                     </div>
                                 </div>
-                                <div className="flex-shrink-0 text-gray-400 group-hover:text-purple-600 transition">
-                                    →
-                                </div>
-                            </div>
-                        </Link>
-                    ))}
+                            </Link>
+                        ))
+                    ) : (
+                        <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-lg border">
+                            <p className="text-gray-500 dark:text-gray-400">No lessons available yet for Databases.</p>
+                            <p className="text-sm text-gray-400 dark:text-gray-500 mt-2">Check back soon for new content!</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </main>
