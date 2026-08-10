@@ -50,13 +50,7 @@ export default function Hero() {
                                 Algebra, Geometry, Calculus &amp; more
                             </p>
                         </div>
-                        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition">
-                            <div className="text-3xl mb-3">💻</div>
-                            <h3 className="font-bold mb-1">Computing</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">
-                                Programming, Databases &amp; Web Dev
-                            </p>
-                        </div>
+
                         <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition">
                             <div className="text-3xl mb-3">🎓</div>
                             <h3 className="font-bold mb-1">Interactive Lessons</h3>

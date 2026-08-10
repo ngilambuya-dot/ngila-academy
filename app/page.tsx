@@ -1,12 +1,13 @@
-import Hero from '../app/components/Hero';
+import Hero from '@/components/Hero';
 import Link from 'next/link';
-import { Calculator, Monitor, BookOpen, Users, Award } from 'lucide-react';
+import { Calculator, BookOpen, Users, Award } from 'lucide-react';
 
 export default function Home() {
     return (
         <>
             <Hero />
 
+            {/* Features Section */}
             <section className="py-16 bg-white dark:bg-gray-900">
                 <div className="container mx-auto px-4">
                     <h2 className="text-3xl font-bold text-center mb-12">Why Learn With Us?</h2>
@@ -42,27 +43,18 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Quick Access - Mathematics Only */}
             <section className="py-16 bg-gray-50 dark:bg-gray-800/50">
                 <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div className="max-w-md mx-auto">
                         <Link
                             href="/mathematics"
-                            className="group bg-white dark:bg-gray-800 p-8 rounded-xl shadow hover:shadow-lg transition text-center"
+                            className="group bg-white dark:bg-gray-800 p-8 rounded-xl shadow hover:shadow-lg transition text-center block"
                         >
                             <Calculator size={48} className="text-blue-600 mx-auto mb-4 group-hover:scale-110 transition" />
                             <h3 className="text-xl font-bold mb-2">Mathematics</h3>
                             <p className="text-gray-600 dark:text-gray-400">
                                 Algebra, Geometry, Calculus &amp; more
-                            </p>
-                        </Link>
-                        <Link
-                            href="/computing"
-                            className="group bg-white dark:bg-gray-800 p-8 rounded-xl shadow hover:shadow-lg transition text-center"
-                        >
-                            <Monitor size={48} className="text-purple-600 mx-auto mb-4 group-hover:scale-110 transition" />
-                            <h3 className="text-xl font-bold mb-2">Computing</h3>
-                            <p className="text-gray-600 dark:text-gray-400">
-                                Programming, Databases &amp; Web Development
                             </p>
                         </Link>
                     </div>
