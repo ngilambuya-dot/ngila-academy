@@ -1,38 +1,29 @@
-// app/mathematics/geometry/page.tsx
 import Link from 'next/link';
 import { getLessons, getTopicMetadata } from '@/lib/content';
 import { Clock, BookOpen } from 'lucide-react';
 
-// This is a server component that will run on Vercel
 export default async function GeometryPage() {
-    // Explicitly target the 'geometry' folder
     const topic = 'geometry';
-    // Fetch the list of lessons from the file system
     const lessons = getLessons('mathematics', topic);
-    // Get the title and description for the page
     const meta = getTopicMetadata('mathematics', topic);
 
     return (
         <main className="min-h-screen py-12">
             <div className="container mx-auto px-4 max-w-4xl">
-                {/* Navigation Back Link */}
                 <Link href="/mathematics" className="text-blue-600 hover:underline text-sm mb-2 inline-block">
                     ← Back to Mathematics
                 </Link>
 
-                {/* Page Header */}
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold mb-2">{meta.name || 'Geometry'}</h1>
                     <p className="text-gray-600 dark:text-gray-400">{meta.description}</p>
                 </div>
 
-                {/* Lessons List - This is the critical part */}
                 <div className="space-y-3">
                     {lessons.length > 0 ? (
                         lessons.map((lesson, index) => (
                             <Link
                                 key={lesson.slug}
-                                // This creates the correct URL for each lesson
                                 href={`/mathematics/geometry/${lesson.slug}`}
                                 className="block bg-white dark:bg-gray-800 p-4 rounded-lg border hover:border-blue-500 transition group"
                             >
@@ -62,10 +53,9 @@ export default async function GeometryPage() {
                             </Link>
                         ))
                     ) : (
-                        // This message will be shown if 'lessons' is empty
                         <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-lg border">
                             <p className="text-gray-500 dark:text-gray-400">No lessons available yet for Geometry.</p>
-                            <p className="text-sm text-gray-400 dark:text-gray-500 mt-2">Please add content files to the 'content/mathematics/geometry/' folder.</p>
+                            <p className="text-sm text-gray-400 dark:text-gray-500 mt-2">Check back soon for new content!</p>
                         </div>
                     )}
                 </div>
