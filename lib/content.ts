@@ -39,7 +39,17 @@ export function getTopics(subject: string): string[] {
 export function getLessons(subject: string, topic: string): { slug: string; title: string; duration?: string }[] {
     try {
         const topicPath = path.join(contentRoot, subject, topic);
+        console.log('📂 Looking for lessons in:', topicPath); // DEBUG
+
+        // Check if the folder exists
+        if (!fs.existsSync(topicPath)) {
+            console.error('❌ Folder does NOT exist:', topicPath);
+            return [];
+        }
+
         const files = fs.readdirSync(topicPath).filter(f => f.endsWith('.md')).sort();
+        console.log('📄 Found files:', files); // DEBUG
+        console.log('📊 Number of lesson files:', files.length); // DEBUG
 
         return files.map(file => {
             const slug = file.replace('.md', '');
@@ -52,7 +62,8 @@ export function getLessons(subject: string, topic: string): { slug: string; titl
                 duration: data.duration || '10 min'
             };
         });
-    } catch {
+    } catch (error) {
+        console.error('❌ Error reading lessons:', error);
         return [];
     }
 }
@@ -76,7 +87,8 @@ export function getLessonContent(subject: string, topic: string, slug: string): 
             },
             content
         };
-    } catch {
+    } catch (error) {
+        console.error('❌ Error reading lesson content:', error);
         return null;
     }
 }

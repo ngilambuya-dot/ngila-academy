@@ -2,10 +2,18 @@ import Link from 'next/link';
 import { getLessons, getTopicMetadata } from '@/lib/content';
 import { Clock, BookOpen } from 'lucide-react';
 
+// Force the page to be dynamic (not cached)
+export const dynamic = 'force-dynamic';
+
 export default async function GeometryPage() {
     const topic = 'geometry';
     const lessons = getLessons('mathematics', topic);
     const meta = getTopicMetadata('mathematics', topic);
+
+    // DEBUG: Log to see what's happening (this will show in terminal)
+    console.log('Topic:', topic);
+    console.log('Number of lessons found:', lessons.length);
+    console.log('First lesson:', lessons[0]?.title || 'No lessons');
 
     return (
         <main className="min-h-screen py-12">
