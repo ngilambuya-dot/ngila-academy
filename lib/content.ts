@@ -153,9 +153,11 @@ export function getTopicMetadata(subject: string, topic: string): { name: string
             algebra: { name: 'Algebra', description: 'Expressions, equations, inequalities, and functions' },
             geometry: { name: 'Geometry', description: 'Shapes, angles, area, volume, and proofs' },
             matrices: { name: 'Matrices', description: 'Arrangements of numbers, operations, determinants, and inverses' },
+            'complex-numbers': { name: 'Complex Numbers', description: 'Numbers with real and imaginary parts, operations, and applications' },
             statistics: { name: 'Statistics', description: 'Data analysis, probability, and distributions' },
             calculus: { name: 'Calculus', description: 'Limits, derivatives, integrals, and applications' }
         },
+
         computing: {
             fundamentals: { name: 'Computer Fundamentals', description: 'Hardware, software, operating systems, and networks' },
             programming: { name: 'Programming', description: 'Algorithms, Python, and programming concepts' },
