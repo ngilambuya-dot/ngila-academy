@@ -1,26 +1,24 @@
 ---
-title: "Geometric Progression"
+title: "Geometric Progression - Complete Guide"
 topic: "Sequences & Series"
 subtopic: "Geometric Progression"
 level: "Intermediate"
-duration: "35 min"
+duration: "45 min"
 learningObjectives:
   - "Understand what a geometric progression is"
-  - "Identify the common ratio of a GP"
-  - "Find the nth term of a GP"
-  - "Calculate the sum of a GP"
+  - "Derive the nth term formula of a GP"
+  - "Derive the sum formula of a GP"
+  - "Apply GP to compound interest problems"
+  - "Use logarithms to find time in compound interest"
   - "Apply GP to real-life situations"
-tags: ["sequences", "series", "geometric-progression", "common-ratio", "sum"]
+tags: ["sequences", "series", "geometric-progression", "compound-interest", "logarithms"]
 ---
 
-# Geometric Progression (GP)
+# Geometric Progression - Complete Guide
 
 ## 🎯 What is a Geometric Progression?
 
 A **Geometric Progression (GP)** is a sequence where each term is obtained by **multiplying the previous term by a constant** called the **common ratio (r)**.
-
-### Key Concept:
-> **Each term = Previous term × Common ratio**
 
 ### General Form:
 a, ar, ar², ar³, ar⁴, ...
@@ -33,41 +31,32 @@ Where:
 
 ---
 
-## 📊 Examples of GP
+## 📊 Derivation of the nth Term Formula
 
-| Sequence | First Term (a) | Common Ratio (r) |
-|----------|----------------|------------------|
-| 2, 4, 8, 16, 32, ... | 2 | 2 |
-| 3, 9, 27, 81, ... | 3 | 3 |
-| 100, 50, 25, 12.5, ... | 100 | 1/2 |
-| 5, -10, 20, -40, ... | 5 | -2 |
-| 1, 1/2, 1/4, 1/8, ... | 1 | 1/2 |
-
----
-
-## 📊 Finding the Common Ratio (r)
-
-### Rule:
-> **r = T₂ / T₁ = T₃ / T₂ = T₄ / T₃**
-
-### Example:
-Sequence: 2, 6, 18, 54, ...
-r = 6/2 = 3
-r = 18/6 = 3
-r = 54/18 = 3
+### Step-by-Step Derivation:
+T₁ = a
+T₂ = a × r = ar
+T₃ = ar × r = ar²
+T₄ = ar² × r = ar³
+T₅ = ar³ × r = ar⁴
 
 text
 
----
+### Pattern:
+T₁ = ar⁰
+T₂ = ar¹
+T₃ = ar²
+T₄ = ar³
+T₅ = ar⁴
 
-## 📊 The nth Term of a GP
+text
 
-### Formula:
+### General Formula:
 Tₙ = arⁿ⁻¹
 
 text
 
-Where:
+**Where:**
 - Tₙ = nth term
 - a = first term
 - r = common ratio
@@ -75,245 +64,339 @@ Where:
 
 ---
 
-## ✍️ Worked Examples
+## 📊 Derivation of the Sum Formula (Sₙ)
 
-### Example 1: Finding the nth Term
-
-**Problem:** Find the 6th term of: 2, 6, 18, 54, ...
-
-**Solution:**
-a = 2, r = 3, n = 6
-T₆ = ar⁶⁻¹
-T₆ = 2(3)⁵
-T₆ = 2 × 243
-T₆ = 486
+### Step-by-Step Derivation:
+Sₙ = a + ar + ar² + ar³ + ... + arⁿ⁻¹
 
 text
 
----
-
-### Example 2: Finding the First Term
-
-**Problem:** The 4th term of a GP is 54 and the common ratio is 3. Find the first term.
-
-**Solution:**
-T₄ = ar³
-54 = a(3)³
-54 = 27a
-a = 54/27 = 2
+**Multiply both sides by r:**
+rSₙ = ar + ar² + ar³ + ar⁴ + ... + arⁿ
 
 text
 
----
-
-### Example 3: Finding the Common Ratio
-
-**Problem:** The first term is 5 and the 4th term is 40. Find the common ratio.
-
-**Solution:**
-T₄ = ar³
-40 = 5r³
-r³ = 40/5 = 8
-r = ∛8 = 2
+**Subtract:**
+Sₙ - rSₙ = (a + ar + ar² + ... + arⁿ⁻¹) - (ar + ar² + ar³ + ... + arⁿ)
 
 text
 
----
-
-### Example 4: Finding the Number of Terms
-
-**Problem:** In a GP, a = 3, r = 2, and Tₙ = 96. Find n.
-
-**Solution:**
-Tₙ = arⁿ⁻¹
-96 = 3(2)ⁿ⁻¹
-32 = 2ⁿ⁻¹
-2⁵ = 2ⁿ⁻¹
-5 = n - 1
-n = 6
+**Simplify:**
+Sₙ(1 - r) = a - arⁿ
+Sₙ(1 - r) = a(1 - rⁿ)
 
 text
 
----
-
-## 📊 Sum of a GP (Geometric Series)
-
-### Formula:
-
-**When r ≠ 1:**
+**Therefore:**
 Sₙ = a(1 - rⁿ) / (1 - r)
 
 text
 
-**When r = 1:**
-Sₙ = na
-
-text
-
-### Alternative Formula:
+### Alternative Form:
 Sₙ = a(rⁿ - 1) / (r - 1)
 
 text
 
 ---
 
-## ✍️ Worked Examples
+## 📊 Derivation of Sum to Infinity (S∞)
 
-### Example 5: Sum of GP
+### Condition:
+> **S∞ exists only when |r| < 1**
 
-**Problem:** Find the sum of: 2 + 6 + 18 + 54 + 162
-
-**Solution:**
-a = 2, r = 3, n = 5
-S₅ = 2(3⁵ - 1) / (3 - 1)
-S₅ = 2(243 - 1) / 2
-S₅ = 2(242) / 2
-S₅ = 242
+### Derivation:
+Sₙ = a(1 - rⁿ) / (1 - r)
 
 text
 
----
-
-### Example 6: Sum of GP
-
-**Problem:** Find the sum of the first 6 terms: 3, 9, 27, ...
-
-**Solution:**
-a = 3, r = 3, n = 6
-S₆ = 3(3⁶ - 1) / (3 - 1)
-S₆ = 3(729 - 1) / 2
-S₆ = 3(728) / 2
-S₆ = 2184 / 2
-S₆ = 1092
+As n → ∞, rⁿ → 0 (since |r| < 1)
+S∞ = a(1 - 0) / (1 - r)
 
 text
 
----
-
-### Example 7: Sum to Infinity (Infinite GP)
-
-**When |r| < 1:**
+**Therefore:**
 S∞ = a / (1 - r)
 
 text
 
-**Problem:** Find the sum to infinity: 100 + 50 + 25 + 12.5 + ...
+---
 
-**Solution:**
-a = 100, r = 1/2
-S∞ = 100 / (1 - 1/2)
-S∞ = 100 / (1/2)
-S∞ = 200
+## 💰 Application 1: Simple Interest (Arithmetic Progression)
+
+### Definition:
+> **Simple Interest** is calculated on the original principal only.
+
+### Formula:
+I = P × R × T
+
+text
+
+Where:
+- I = Interest earned
+- P = Principal (initial amount)
+- R = Rate of interest (as a decimal)
+- T = Time (in years)
+
+### Amount after T years:
+A = P(1 + RT)
 
 text
 
 ---
 
-## 📊 Comparison: AP vs GP
+### Example: Simple Interest
 
-| Feature | Arithmetic Progression | Geometric Progression |
-|---------|----------------------|---------------------|
-| **Operation** | Addition/Subtraction | Multiplication/Division |
-| **Constant** | Common Difference (d) | Common Ratio (r) |
-| **Formula** | Tₙ = a + (n-1)d | Tₙ = arⁿ⁻¹ |
-| **Sum** | Sₙ = n/2[2a+(n-1)d] | Sₙ = a(rⁿ-1)/(r-1) |
-| **Example** | 2, 4, 6, 8, 10 | 2, 4, 8, 16, 32 |
+**Problem:** You invest KES 10,000 at 5% simple interest per year. Find the amount after 5 years.
+
+**Solution:**
+P = 10,000, R = 0.05, T = 5
+A = 10,000(1 + 0.05 × 5)
+A = 10,000(1 + 0.25)
+A = 10,000(1.25)
+A = 12,500
+
+text
+
+**This is an Arithmetic Progression:**
+Year 0: 10,000
+Year 1: 10,500
+Year 2: 11,000
+Year 3: 11,500
+Year 4: 12,000
+Year 5: 12,500
+
+text
+
+**Common difference (d) = 500**
+
+---
+
+## 💰 Application 2: Compound Interest (Geometric Progression)
+
+### Definition:
+> **Compound Interest** is calculated on the principal plus accumulated interest.
+
+### Formula:
+A = P(1 + r)ⁿ
+
+text
+
+Where:
+- A = Final amount
+- P = Principal (initial amount)
+- r = Rate of interest (as a decimal)
+- n = Number of compounding periods
+
+---
+
+### Example: Compound Interest
+
+**Problem:** You invest KES 10,000 at 10% compound interest per year. Find the amount after 4 years.
+
+**Solution:**
+P = 10,000, r = 0.10, n = 4
+A = 10,000(1 + 0.10)⁴
+A = 10,000(1.10)⁴
+A = 10,000 × 1.4641
+A = 14,641
+
+text
+
+**This is a Geometric Progression:**
+Year 0: 10,000
+Year 1: 11,000
+Year 2: 12,100
+Year 3: 13,310
+Year 4: 14,641
+
+text
+
+**Common ratio (r) = 1.10**
+
+---
+
+## 📊 Finding Time in Compound Interest using Logarithms
+
+### The Formula:
+A = P(1 + r)ⁿ
+
+text
+
+### Steps to find n (time):
+
+**Step 1:** Divide both sides by P
+A/P = (1 + r)ⁿ
+
+text
+
+**Step 2:** Take log of both sides
+log(A/P) = log(1 + r)ⁿ
+
+text
+
+**Step 3:** Use the power rule of logarithms
+log(A/P) = n × log(1 + r)
+
+text
+
+**Step 4:** Solve for n
+n = log(A/P) / log(1 + r)
+
+text
+
+---
+
+## ✍️ Worked Examples
+
+### Example 1: Finding Time using Logarithms
+
+**Problem:** How long will it take KES 5,000 to grow to KES 10,000 at 8% compound interest per year?
+
+**Solution:**
+P = 5,000, A = 10,000, r = 0.08
+
+Step 1: A/P = 10,000/5,000 = 2
+
+Step 2: n = log(2) / log(1.08)
+n = log(2) / log(1.08)
+
+Using calculator:
+log(2) ≈ 0.3010
+log(1.08) ≈ 0.0334
+
+n = 0.3010 / 0.0334
+n ≈ 9.01 years
+
+text
+
+**Answer:** Approximately 9 years
+
+---
+
+### Example 2: Finding Time
+
+**Problem:** How long will it take KES 8,000 to grow to KES 12,000 at 6% compound interest per year?
+
+**Solution:**
+P = 8,000, A = 12,000, r = 0.06
+
+A/P = 12,000/8,000 = 1.5
+
+n = log(1.5) / log(1.06)
+n = 0.1761 / 0.0253
+n ≈ 6.96 years
+
+text
+
+**Answer:** Approximately 7 years
+
+---
+
+### Example 3: Finding Interest Rate
+
+**Problem:** What interest rate is needed for KES 3,000 to grow to KES 5,000 in 6 years?
+
+**Solution:**
+A = P(1 + r)ⁿ
+5,000 = 3,000(1 + r)⁶
+5,000/3,000 = (1 + r)⁶
+1.6667 = (1 + r)⁶
+
+Take 6th root:
+(1.6667)^(1/6) = 1 + r
+1.089 = 1 + r
+r = 0.089 = 8.9%
+
+text
+
+---
+
+### Example 4: Comparing Simple and Compound Interest
+
+**Problem:** KES 20,000 is invested at 10% for 5 years. Compare simple and compound interest.
+
+**Solution:**
+
+**Simple Interest:**
+A = 20,000(1 + 0.10 × 5)
+A = 20,000(1.50)
+A = 30,000
+
+text
+
+**Compound Interest:**
+A = 20,000(1.10)⁵
+A = 20,000 × 1.6105
+A = 32,210
+
+text
+
+**Difference:**
+Compound - Simple = 32,210 - 30,000 = 2,210
+
+text
+
+---
+
+## 📊 Summary: Simple vs Compound Interest
+
+| Feature | Simple Interest | Compound Interest |
+|---------|-----------------|-------------------|
+| **Type** | Arithmetic Progression | Geometric Progression |
+| **Formula** | A = P(1 + RT) | A = P(1 + r)ⁿ |
+| **Growth** | Linear | Exponential |
+| **Interest** | On principal only | On principal + interest |
 
 ---
 
 ## 🌍 Real-Life Applications
 
-### Application 1: Population Growth
+### Application 1: Savings
 
-> A city has 10,000 people. Population grows by 10% each year.
->
-> **GP:** 10,000, 11,000, 12,100, 13,310, ...
-> **a = 10,000, r = 1.1**
+> Saving KES 1,000 per month is an arithmetic progression.
 
-### Application 2: Compound Interest
+### Application 2: Population Growth
 
-> You invest $1000 at 5% compound interest per year.
->
-> **GP:** 1000, 1050, 1102.5, 1157.63, ...
-> **a = 1000, r = 1.05**
+> Population growing at 2% per year is a GP.
 
 ### Application 3: Depreciation
 
-> A car worth $20,000 depreciates by 10% each year.
->
-> **GP:** 20,000, 18,000, 16,200, 14,580, ...
-> **a = 20,000, r = 0.9**
-
-### Application 4: Half-Life
-
-> A radioactive substance has a half-life of 4 years.
->
-> **GP:** 100g, 50g, 25g, 12.5g, ...
-> **a = 100, r = 1/2**
+> Car value decreasing by 15% per year is a GP.
 
 ---
 
 ## 🎯 Practice Questions
 
-### Easy Level
-
-**Question 1:** Find the 5th term of: 3, 6, 12, 24, ...
+**Question 1:** Find the 8th term of: 3, 6, 12, 24, ...
 
 <details>
 <summary>Click to reveal answer</summary>
 
 a = 3, r = 2
-T₅ = 3(2)⁴ = 3 × 16 = 48
+T₈ = 3(2)⁷ = 3 × 128 = 384
 </details>
 
 ---
 
-**Question 2:** Find the sum: 1 + 2 + 4 + 8 + 16
+**Question 2:** Find the sum: 2 + 6 + 18 + 54 + 162
 
 <details>
 <summary>Click to reveal answer</summary>
 
-a = 1, r = 2, n = 5
-S₅ = 1(2⁵ - 1) / (2 - 1) = 31
+a = 2, r = 3, n = 5
+S₅ = 2(3⁵ - 1) / (3 - 1) = 2(243 - 1) / 2 = 242
 </details>
 
 ---
 
-### Medium Level
-
-**Question 3:** In a GP, a = 2, r = 3, and Tₙ = 486. Find n.
+**Question 3:** How long will it take KES 5,000 to grow to KES 8,000 at 12% compound interest?
 
 <details>
 <summary>Click to reveal answer</summary>
 
-486 = 2(3)ⁿ⁻¹
-243 = 3ⁿ⁻¹
-3⁵ = 3ⁿ⁻¹
-n = 6
-</details>
-
----
-
-**Question 4:** Find the sum to infinity: 50 + 25 + 12.5 + ...
-
-<details>
-<summary>Click to reveal answer</summary>
-
-a = 50, r = 1/2
-S∞ = 50 / (1 - 1/2) = 50 / (1/2) = 100
-</details>
-
----
-
-### Hard Level
-
-**Question 5:** A population of 5000 bacteria doubles every hour. How many bacteria after 6 hours?
-
-<details>
-<summary>Click to reveal answer</summary>
-
-a = 5000, r = 2, n = 7 (hour 0 to hour 6)
-T₇ = 5000(2)⁶ = 5000 × 64 = 320,000 bacteria
+n = log(8000/5000) / log(1.12)
+n = log(1.6) / log(1.12)
+n = 0.2041 / 0.0492 = 4.15 years
 </details>
 
 ---
@@ -326,18 +409,10 @@ T₇ = 5000(2)⁶ = 5000 × 64 = 320,000 bacteria
 |---------|-----|
 | Tₙ = arⁿ⁻¹ | nth term |
 | Sₙ = a(rⁿ-1)/(r-1) | Sum of n terms |
-| S∞ = a/(1-r) | Sum to infinity (when |r| < 1) |
-
-### Key Terms:
-a = first term
-r = common ratio
-n = number of terms
-Tₙ = nth term
-Sₙ = sum of n terms
-S∞ = sum to infinity
-
-text
+| S∞ = a/(1-r) | Sum to infinity |
+| A = P(1+r)ⁿ | Compound Interest |
+| n = log(A/P)/log(1+r) | Finding time |
 
 ---
 
-**Great job! You've completed Geometric Progression!** 🎉
+**Great job! You've completed Geometric Progression - Complete Guide!** 🎉
