@@ -191,6 +191,216 @@ Where:
 - d₂ = frequency of modal class - frequency of next class
 - c = class width
 
+## 📊 3. Mode
+
+### For Ungrouped Data:
+
+> **The mode is the value that appears most frequently.**
+
+**Example: Finding the Mode**
+
+**Problem:** Find the mode of: 2, 3, 3, 5, 7, 7, 7, 9
+
+**Solution:**
+7 appears 3 times (most frequent)
+Mode = 7
+
+text
+
+### For Grouped Data:
+
+**Formula:**
+Mode = L + ( (f₁ - f₀) / (2f₁ - f₀ - f₂) ) × h
+
+text
+
+**Where:**
+- **L** = lower class boundary of the modal class
+- **f₁** = frequency of the modal class
+- **f₀** = frequency of the class before the modal class
+- **f₂** = frequency of the class after the modal class
+- **h** = class width (class interval)
+
+**Note:** The modal class is the class with the **highest frequency**.
+
+---
+
+## ✍️ Detailed Worked Example
+
+**Problem:** Find the mode for the following grouped data:
+
+| Marks | Frequency (f) |
+|-------|---------------|
+| 10-19 | 5 |
+| 20-29 | 8 |
+| 30-39 | 15 |
+| 40-49 | 10 |
+| 50-59 | 4 |
+
+**Solution:**
+
+**Step 1: Identify the modal class**
+Highest frequency = 15
+Modal class = 30-39
+
+text
+
+**Step 2: Identify the values needed**
+
+| Symbol | Value | Explanation |
+|--------|-------|-------------|
+| **L** | 29.5 | Lower class boundary of modal class |
+| **f₁** | 15 | Frequency of modal class |
+| **f₀** | 8 | Frequency of class before modal class |
+| **f₂** | 10 | Frequency of class after modal class |
+| **h** | 10 | Class width (30-39 = 10) |
+
+**Step 3: Apply the formula**
+Mode = L + ( (f₁ - f₀) / (2f₁ - f₀ - f₂) ) × h
+Mode = 29.5 + ( (15 - 8) / (2(15) - 8 - 10) ) × 10
+Mode = 29.5 + ( 7 / (30 - 8 - 10) ) × 10
+Mode = 29.5 + ( 7 / 12 ) × 10
+Mode = 29.5 + (0.5833) × 10
+Mode = 29.5 + 5.833
+Mode = 35.33
+
+text
+
+**Answer:** The mode is approximately **35.33**
+
+---
+
+## 📊 Understanding the Formula Components
+
+| Symbol | Description | Why It's Used |
+|--------|-------------|---------------|
+| **L** | Lower boundary of modal class | Starting point for calculation |
+| **f₁** | Frequency of modal class | The highest frequency |
+| **f₀** | Frequency before modal class | Shows how much frequency increases |
+| **f₂** | Frequency after modal class | Shows how much frequency decreases |
+| **h** | Class width | Adjusts the value to the correct scale |
+
+### Visual Representation:
+↑
+f │
+r │
+e │
+q │
+u │
+e │ ████████████████
+n │ ██ ██
+c │ ██ f₀ = 8 ██
+y │ ██ ██ f₂ = 10
+│ ████████████████████
+│ ██ f₁ = 15 ██
+│ ██ ██
+└────────────────────────→
+10 20 30 40 50 60
+↑
+Modal Class
+
+text
+
+---
+
+## 📊 Comparison of Mode Formulas
+
+| Data Type | Formula | When to Use |
+|-----------|---------|-------------|
+| **Ungrouped** | Most frequent value | When data is listed individually |
+| **Grouped** | L + ((f₁-f₀)/(2f₁-f₀-f₂)) × h | When data is in class intervals |
+
+---
+
+## 🎯 Practice Questions
+
+**Question 1:** Find the mode for the following grouped data:
+
+| Class | f |
+|-------|---|
+| 0-9 | 4 |
+| 10-19 | 6 |
+| 20-29 | 10 |
+| 30-39 | 5 |
+
+<details>
+<summary>Click to reveal answer</summary>
+
+Modal class: 20-29
+L = 19.5, f₁ = 10, f₀ = 6, f₂ = 5, h = 10
+
+Mode = 19.5 + ((10-6)/(20-6-5)) × 10
+Mode = 19.5 + (4/9) × 10
+Mode = 19.5 + 4.44
+Mode = 23.94
+</details>
+
+---
+
+**Question 2:** Find the mode for: 2, 4, 4, 6, 6, 6, 8, 8
+
+<details>
+<summary>Click to reveal answer</summary>
+
+Ungrouped data: Mode = 6 (appears 3 times)
+</details>
+
+---
+
+## 📊 Summary: Mode
+
+### Ungrouped Data:
+Mode = Most frequent value
+
+text
+
+### Grouped Data:
+Mode = L + ((f₁ - f₀)/(2f₁ - f₀ - f₂)) × h
+
+text
+
+### Key Points:
+- Mode is the **most frequent** value
+- For grouped data, we use the **modal class** (highest frequency)
+- The formula gives an **estimated** mode within the modal class
+- Works best for **smooth, unimodal distributions**
+
+---
+
+**Great job! You've completed the Mode section!** 🎉
+✅ Also Update the Practice Questions Section
+Add these to the practice questions:
+
+markdown
+**Question 4:** Find the mode for the following grouped data:
+
+| Class | f |
+|-------|---|
+| 10-14 | 3 |
+| 15-19 | 5 |
+| 20-24 | 7 |
+| 25-29 | 4 |
+
+<details>
+<summary>Click to reveal answer</summary>
+
+Modal class: 20-24
+L = 19.5, f₁ = 7, f₀ = 5, f₂ = 4, h = 5
+
+Mode = 19.5 + ((7-5)/(14-5-4)) × 5
+Mode = 19.5 + (2/5) × 5
+Mode = 19.5 + 2
+Mode = 21.5
+</details>
+
+**Question 5:** Find the mode for: 5, 7, 8, 8, 9, 9, 9, 10
+
+<details>
+<summary>Click to reveal answer</summary>
+
+Ungrouped data: Mode = 9 (appears 3 times)
+</details>
+
 **Example 7: Grouped Data**
 
 | Class | f |
