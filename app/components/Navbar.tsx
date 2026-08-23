@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X, Calculator, Search } from 'lucide-react';
+import { Menu, X, BookOpen, PenTool, FileText, User, Award, Video, Search } from 'lucide-react';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,15 +19,29 @@ export default function Navbar() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-6">
-                        <Link href="/mathematics" className="flex items-center gap-1 hover:text-blue-600 transition">
-                            <Calculator size={18} />
-                            Mathematics
+                        <Link href="/learn" className="flex items-center gap-1 hover:text-blue-600 transition">
+                            <BookOpen size={18} />
+                            Learn
                         </Link>
-                        <Link href="/tutoring" className="hover:text-blue-600 transition">
-                            Tutoring
+                        <Link href="/practice" className="flex items-center gap-1 hover:text-blue-600 transition">
+                            <PenTool size={18} />
+                            Practice
                         </Link>
-                        <Link href="/register" className="hover:text-blue-600 transition">
-                            Register
+                        <Link href="/test" className="flex items-center gap-1 hover:text-blue-600 transition">
+                            <FileText size={18} />
+                            Test
+                        </Link>
+                        <Link href="/tutoring" className="flex items-center gap-1 hover:text-blue-600 transition">
+                            <User size={18} />
+                            Tutor
+                        </Link>
+                        <Link href="/mastery" className="flex items-center gap-1 hover:text-blue-600 transition">
+                            <Award size={18} />
+                            Mastery
+                        </Link>
+                        <Link href="/youtube" className="flex items-center gap-1 hover:text-blue-600 transition">
+                            <Video size={18} />
+                            Watch
                         </Link>
                         <Link href="/search" className="hover:text-blue-600 transition">
                             <Search size={18} />
@@ -46,18 +60,26 @@ export default function Navbar() {
                 {/* Mobile Navigation */}
                 {isOpen && (
                     <div className="md:hidden py-4 border-t flex flex-col gap-4">
-                        <Link href="/mathematics" className="flex items-center gap-2 hover:text-blue-600" onClick={() => setIsOpen(false)}>
-                            <Calculator size={18} />
-                            Mathematics
+                        <Link href="/learn" className="flex items-center gap-2 hover:text-blue-600" onClick={() => setIsOpen(false)}>
+                            <BookOpen size={18} /> Learn
                         </Link>
-                        <Link href="/tutoring" className="hover:text-blue-600" onClick={() => setIsOpen(false)}>
-                            Tutoring
+                        <Link href="/practice" className="flex items-center gap-2 hover:text-blue-600" onClick={() => setIsOpen(false)}>
+                            <PenTool size={18} /> Practice
                         </Link>
-                        <Link href="/register" className="hover:text-blue-600" onClick={() => setIsOpen(false)}>
-                            Register
+                        <Link href="/test" className="flex items-center gap-2 hover:text-blue-600" onClick={() => setIsOpen(false)}>
+                            <FileText size={18} /> Test
                         </Link>
-                        <Link href="/search" className="hover:text-blue-600" onClick={() => setIsOpen(false)}>
-                            Search
+                        <Link href="/tutoring" className="flex items-center gap-2 hover:text-blue-600" onClick={() => setIsOpen(false)}>
+                            <User size={18} /> Tutor
+                        </Link>
+                        <Link href="/mastery" className="flex items-center gap-2 hover:text-blue-600" onClick={() => setIsOpen(false)}>
+                            <Award size={18} /> Mastery
+                        </Link>
+                        <Link href="/youtube" className="flex items-center gap-2 hover:text-blue-600" onClick={() => setIsOpen(false)}>
+                            <Video size={18} /> Watch
+                        </Link>
+                        <Link href="/search" className="flex items-center gap-2 hover:text-blue-600" onClick={() => setIsOpen(false)}>
+                            <Search size={18} /> Search
                         </Link>
                     </div>
                 )}
