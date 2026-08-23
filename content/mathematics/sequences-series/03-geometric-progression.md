@@ -337,6 +337,305 @@ Compound - Simple = 32,210 - 30,000 = 2,210
 text
 
 ---
+title: "Geometric Progression - Complete Guide"
+topic: "Sequences & Series"
+subtopic: "Geometric Progression"
+level: "Intermediate"
+duration: "45 min"
+learningObjectives:
+  - "Understand what a geometric progression is"
+  - "Derive the nth term formula of a GP"
+  - "Derive the sum formula of a GP"
+  - "Derive the sum to infinity formula"
+  - "Apply GP to compound interest problems"
+  - "Use logarithms to find time in compound interest"
+tags: ["sequences", "series", "geometric-progression", "derivations", "compound-interest"]
+---
+
+# Geometric Progression - Complete Guide
+
+## 🎯 What is a Geometric Progression?
+
+A **Geometric Progression (GP)** is a sequence where each term is obtained by **multiplying the previous term by a constant** called the **common ratio (r)**.
+
+### General Form:
+a, ar, ar², ar³, ar⁴, ...
+
+text
+
+Where:
+- **a** = first term
+- **r** = common ratio
+
+---
+
+## 📊 Derivation of the nth Term Formula (Tₙ = arⁿ⁻¹)
+
+### Step-by-Step Derivation:
+
+**Definition:** In a GP, each term is obtained by multiplying the previous term by the common ratio (r).
+
+**Building the sequence:**
+T₁ = a
+T₂ = a × r = ar
+T₃ = ar × r = ar²
+T₄ = ar² × r = ar³
+T₅ = ar³ × r = ar⁴
+
+text
+
+**Observing the Pattern:**
+
+| Term | Expression | Power of r |
+|------|------------|------------|
+| T₁ | a | r⁰ |
+| T₂ | ar | r¹ |
+| T₃ | ar² | r² |
+| T₄ | ar³ | r³ |
+| T₅ | ar⁴ | r⁴ |
+| Tₙ | arⁿ⁻¹ | rⁿ⁻¹ |
+
+**Therefore:**
+Tₙ = arⁿ⁻¹
+
+text
+
+**Explanation:** To get the nth term, we start with the first term (a) and multiply by the common ratio (r) exactly (n-1) times.
+
+---
+
+## 📊 Derivation of the Sum Formula (Sₙ = a(rⁿ-1)/(r-1))
+
+### Step-by-Step Derivation:
+
+**Step 1:** Write the sum of n terms.
+Sₙ = a + ar + ar² + ar³ + ... + arⁿ⁻¹ ...(1)
+
+text
+
+**Step 2:** Multiply both sides by r.
+rSₙ = ar + ar² + ar³ + ar⁴ + ... + arⁿ ...(2)
+
+text
+
+**Step 3:** Subtract equation (1) from equation (2).
+rSₙ - Sₙ = (ar + ar² + ar³ + ... + arⁿ) - (a + ar + ar² + ... + arⁿ⁻¹)
+
+text
+
+**Step 4:** Most terms cancel out.
+Sₙ(r - 1) = arⁿ - a
+
+text
+
+**Step 5:** Factor out a.
+Sₙ(r - 1) = a(rⁿ - 1)
+
+text
+
+**Step 6:** Divide both sides by (r - 1).
+Sₙ = a(rⁿ - 1) / (r - 1)
+
+text
+
+**Alternative Form:**
+Sₙ = a(1 - rⁿ) / (1 - r)
+
+text
+
+---
+
+## 📊 Derivation of Sum to Infinity (S∞)
+
+### Condition:
+> **S∞ exists only when |r| < 1**
+
+### Derivation:
+
+**Step 1:** Start with the sum formula.
+Sₙ = a(1 - rⁿ) / (1 - r)
+
+text
+
+**Step 2:** As n approaches infinity (n → ∞), what happens to rⁿ?
+
+When |r| < 1, rⁿ → 0 as n → ∞.
+
+**Step 3:** Apply the limit.
+S∞ = a(1 - 0) / (1 - r)
+
+text
+
+**Therefore:**
+S∞ = a / (1 - r)
+
+text
+
+**Explanation:** When the terms get smaller and smaller, the sum approaches a finite value.
+
+---
+
+## 📊 Derivation of Compound Interest Formula (A = P(1+r)ⁿ)
+
+### Step-by-Step Derivation:
+
+**Step 1:** Start with Principal P and interest rate r.
+
+**Year 1:**
+Starting amount: P
+Interest: P × r
+Amount after Year 1: A₁ = P + Pr = P(1 + r)
+
+text
+
+**Year 2:**
+Starting amount: A₁ = P(1 + r)
+Interest: A₁ × r
+Amount after Year 2: A₂ = A₁ + A₁r = A₁(1 + r)
+A₂ = P(1 + r)(1 + r) = P(1 + r)²
+
+text
+
+**Year 3:**
+Starting amount: A₂ = P(1 + r)²
+Amount after Year 3: A₃ = P(1 + r)³
+
+text
+
+**Year n:**
+Aₙ = P(1 + r)ⁿ
+
+text
+
+**Therefore:**
+A = P(1 + r)ⁿ
+
+text
+
+**The Connection to GP:**
+- First term (a) = P
+- Common ratio (r) = (1 + r)
+- Tₙ = arⁿ⁻¹ = P(1+r)ⁿ
+
+---
+
+## 📊 Finding Time using Logarithms
+
+### The Formula:
+A = P(1 + r)ⁿ
+
+text
+
+### Steps to find n (time):
+
+**Step 1:** Divide both sides by P.
+A/P = (1 + r)ⁿ
+
+text
+
+**Step 2:** Take log of both sides.
+log(A/P) = log(1 + r)ⁿ
+
+text
+
+**Step 3:** Use the power rule of logarithms.
+log(A/P) = n × log(1 + r)
+
+text
+
+**Step 4:** Solve for n.
+n = log(A/P) / log(1 + r)
+
+text
+
+---
+
+## ✍️ Worked Examples
+
+### Example 1: Compound Interest
+
+**Problem:** How long will it take KES 5,000 to grow to KES 10,000 at 8% compound interest per year?
+
+**Solution:**
+P = 5,000, A = 10,000, r = 0.08
+
+A/P = 10,000/5,000 = 2
+
+n = log(2) / log(1.08)
+n = 0.3010 / 0.0334
+n ≈ 9.01 years
+
+text
+
+**Answer:** Approximately 9 years
+
+---
+
+### Example 2: Finding Interest Rate
+
+**Problem:** What interest rate is needed for KES 3,000 to grow to KES 5,000 in 6 years?
+
+**Solution:**
+A = P(1 + r)ⁿ
+5,000 = 3,000(1 + r)⁶
+5,000/3,000 = (1 + r)⁶
+1.6667 = (1 + r)⁶
+(1.6667)^(1/6) = 1 + r
+1.089 = 1 + r
+r = 0.089 = 8.9%
+
+text
+
+---
+
+## 🎯 Practice Questions
+
+**Question 1:** Find the 8th term of: 3, 6, 12, 24, ...
+
+<details>
+<summary>Click to reveal answer</summary>
+
+a = 3, r = 2
+T₈ = 3(2)⁷ = 3 × 128 = 384
+</details>
+
+---
+
+**Question 2:** How long will it take KES 5,000 to grow to KES 8,000 at 12% compound interest?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+n = log(8000/5000) / log(1.12)
+n = log(1.6) / log(1.12)
+n = 0.2041 / 0.0492 = 4.15 years
+</details>
+
+---
+
+## 📊 Summary
+
+### GP Formulas:
+
+| Formula | Use |
+|---------|-----|
+| Tₙ = arⁿ⁻¹ | nth term |
+| Sₙ = a(rⁿ-1)/(r-1) | Sum of n terms |
+| S∞ = a/(1-r) | Sum to infinity |
+| A = P(1+r)ⁿ | Compound Interest |
+| n = log(A/P)/log(1+r) | Finding time |
+
+### Connection to Logs:
+log(A/P) = n × log(1+r)
+n = log(A/P) / log(1+r)
+
+text
+
+---
+
+
+
+---
 
 ## 📊 Summary: Simple vs Compound Interest
 
@@ -412,6 +711,7 @@ n = 0.2041 / 0.0492 = 4.15 years
 | S∞ = a/(1-r) | Sum to infinity |
 | A = P(1+r)ⁿ | Compound Interest |
 | n = log(A/P)/log(1+r) | Finding time |
+
 
 ---
 
