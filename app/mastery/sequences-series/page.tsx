@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Youtube, FileText, PenTool, Award } from 'lucide-react';
+import { ArrowRight, Video, FileText, PenTool, Award } from 'lucide-react';
 
 export default function SequencesSeriesMastery() {
     return (
@@ -87,7 +87,7 @@ export default function SequencesSeriesMastery() {
                         <span className="block mt-2 font-semibold">✏️ Practice Questions</span>
                     </Link>
                     <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow hover:shadow-lg transition text-center">
-                        <Youtube className="mx-auto text-red-600" size={32} />
+                        <Video className="mx-auto text-red-600" size={32} />
                         <span className="block mt-2 font-semibold">🎥 Watch on YouTube</span>
                     </a>
                 </div>
