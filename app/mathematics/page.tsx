@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { getSubjects, getSubjectMetadata, getTopicMetadata } from '@/lib/content';
+import { getTopics, getSubjectMetadata, getTopicMetadata } from '@/lib/content';
 import { ArrowRight } from 'lucide-react';
 
 export default async function MathematicsPage() {
-    const subjects = getSubjects();
+    const topics = getTopics('mathematics');
     const meta = getSubjectMetadata('mathematics');
 
     return (
@@ -20,16 +20,16 @@ export default async function MathematicsPage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {subjects.map((subject) => {
-                        const topicMeta = getTopicMetadata('mathematics', subject);
+                    {topics.map((topic) => {
+                        const topicMeta = getTopicMetadata('mathematics', topic);
                         return (
                             <Link
-                                key={subject}
-                                href={`/mathematics/${subject}`}
+                                key={topic}
+                                href={`/mathematics/${topic}`}
                                 className="group bg-white dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-lg transition border border-gray-100 dark:border-gray-700"
                             >
                                 <h2 className="text-xl font-semibold mb-2 group-hover:text-blue-600 transition">
-                                    {topicMeta.name || subject}
+                                    {topicMeta.name || topic}
                                 </h2>
                                 <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
                                     {topicMeta.description || 'Explore this topic'}
