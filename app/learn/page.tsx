@@ -1,15 +1,15 @@
 import Link from 'next/link';
-import { BookOpen, Calculator, Square, Circle, Sigma, Function, BarChart } from 'lucide-react';
+import { BookOpen, Calculator, Square, Circle, Sigma, BarChart, Code, TrendingUp } from 'lucide-react';
 
 export default function LearnPage() {
     const subjects = [
         { name: 'Arithmetic', icon: Calculator, description: 'Numbers, operations, fractions, and percentages', path: '/mathematics/arithmetic', color: 'blue' },
-        { name: 'Algebra', icon: Function, description: 'Expressions, equations, inequalities, and functions', path: '/mathematics/algebra', color: 'green' },
+        { name: 'Algebra', icon: Code, description: 'Expressions, equations, inequalities, and functions', path: '/mathematics/algebra', color: 'green' },
         { name: 'Geometry', icon: Square, description: 'Shapes, angles, area, volume, and proofs', path: '/mathematics/geometry', color: 'purple' },
         { name: 'Complex Numbers', icon: Circle, description: 'Numbers with real and imaginary parts', path: '/mathematics/complex-numbers', color: 'orange' },
         { name: 'Matrices', icon: Square, description: 'Operations, determinants, and inverses', path: '/mathematics/matrices', color: 'red' },
         { name: 'Sequences & Series', icon: Sigma, description: 'Arithmetic and geometric progressions', path: '/mathematics/sequences-series', color: 'indigo' },
-        { name: 'Calculus', icon: Function, description: 'Limits, derivatives, integrals, and applications', path: '/mathematics/calculus', color: 'pink' },
+        { name: 'Calculus', icon: TrendingUp, description: 'Limits, derivatives, integrals, and applications', path: '/mathematics/calculus', color: 'pink' },
         { name: 'Statistics', icon: BarChart, description: 'Data analysis, probability, and distributions', path: '/mathematics/statistics', color: 'teal' },
     ];
 

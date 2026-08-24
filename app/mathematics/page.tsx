@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getSubjects, getSubjectMetadata } from '@/lib/content';
+import { getSubjects, getSubjectMetadata, getTopicMetadata } from '@/lib/content';
 import { ArrowRight } from 'lucide-react';
 
 export default async function MathematicsPage() {
