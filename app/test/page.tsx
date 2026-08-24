@@ -2,97 +2,188 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { FileText, Clock, Award, RefreshCw, Download, Printer, BookOpen } from 'lucide-react';
+import { FileText, Clock, Award, RefreshCw, Download, Printer, BookOpen, GraduationCap } from 'lucide-react';
 
+// Question type definitions
 interface ExamQuestion {
     id: number;
     section: 'A' | 'B';
     marks: number;
     question: string;
     type: string;
+    parts?: { label: string; text: string; marks: number }[];
 }
 
 export default function TestPage() {
     const [examGenerated, setExamGenerated] = useState(false);
     const [examType, setExamType] = useState('cat');
+    const [examNumber, setExamNumber] = useState(1);
     const [level, setLevel] = useState('secondary');
     const [questions, setQuestions] = useState<ExamQuestion[]>([]);
     const [totalMarks, setTotalMarks] = useState(0);
     const [examTitle, setExamTitle] = useState('');
+    const [schoolName, setSchoolName] = useState('Ngila Academy');
+
+    // Generate random numbers for different exam versions
+    const generateRandom = (min: number, max: number) => {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+
+    // Generate different figure sets for each question
+    const generateFigures = () => {
+        return {
+            n1: generateRandom(2, 10),
+            n2: generateRandom(10, 30),
+            n3: generateRandom(3, 8),
+            n4: generateRandom(15, 25),
+            n5: generateRandom(40, 80),
+            n6: generateRandom(100, 500),
+            n7: generateRandom(5, 20),
+            n8: generateRandom(1000, 5000),
+            n9: generateRandom(2, 6),
+            n10: generateRandom(20, 50),
+            n11: generateRandom(3, 7),
+            n12: generateRandom(30, 70),
+            // For sequences
+            a1: generateRandom(2, 10),
+            d1: generateRandom(2, 6),
+            termPos1: generateRandom(15, 25),
+            termPos2: generateRandom(50, 70),
+            // For GP
+            gp_a: generateRandom(2, 8),
+            gp_r: generateRandom(2, 4),
+            // For matrices
+            matrix_a: generateRandom(1, 5),
+            matrix_b: generateRandom(2, 6),
+            matrix_c: generateRandom(1, 4),
+            matrix_d: generateRandom(2, 5),
+            // For vectors
+            vec_a: generateRandom(2, 6),
+            vec_b: generateRandom(1, 4),
+            vec_c: generateRandom(3, 8),
+            // For differentiation
+            diff_a: generateRandom(2, 5),
+            diff_b: generateRandom(1, 4),
+            diff_c: generateRandom(3, 6),
+            // For AP sum
+            ap_n: generateRandom(16, 20),
+        };
+    };
 
     const generateExam = () => {
-        // Generate CAT (30 marks) or Final Exam (70 marks)
+        const figs = generateFigures();
         const isCAT = examType === 'cat';
-        const total = isCAT ? 30 : 70;
+        const total = isCAT ? 30 : 100;
         setTotalMarks(total);
 
-        const schoolName = ['Kahutini Secondary', 'Ngila Academy', 'Kajiado High', 'Mombasa School'][Math.floor(Math.random() * 4)];
-        const examName = isCAT ? 'CAT 1' : 'End of Term Examination';
-        setExamTitle(`${schoolName} - Mathematics ${examName}`);
+        const schools = ['Kahutini Secondary', 'Ngila Academy', 'Kajiado High', 'Mombasa School', 'Nairobi Academy'];
+        const school = schools[Math.floor(Math.random() * schools.length)];
+        setSchoolName(school);
 
-        // Generate Section A (BODMAS, Arithmetic, Algebra, etc.)
-        const sectionAQuestions: ExamQuestion[] = [];
-        const sectionBQuestions: ExamQuestion[] = [];
+        const examName = isCAT ? `CAT ${examNumber}` : 'End of Term Examination';
+        setExamTitle(`${school} - Mathematics ${examName}`);
+
+        const newQuestions: ExamQuestion[] = [];
 
         if (isCAT) {
-            // CAT: 15 questions × 2 marks = 30 marks
-            const topics = [
-                { q: 'Evaluate: 18 - 3(4 + 2) ÷ 3', type: 'BODMAS' },
-                { q: 'Simplify: 2/3 + 3/4', type: 'Fractions' },
-                { q: 'Convert 0.75 to a percentage', type: 'Decimals' },
-                { q: 'Solve: 3x + 7 = 22', type: 'Algebra' },
-                { q: 'Find the mean of: 5, 8, 12, 15, 20', type: 'Statistics' },
-                { q: 'Simplify: (x²)³', type: 'Indices' },
-                { q: 'Find the area of a circle with radius 7cm', type: 'Geometry' },
-                { q: 'Solve: 2x - 5 = 13', type: 'Algebra' },
-                { q: 'What is the square root of 144?', type: 'Arithmetic' },
-                { q: 'Simplify: 3/5 + 1/5', type: 'Fractions' },
-                { q: 'Find the perimeter of a rectangle 8cm by 5cm', type: 'Geometry' },
-                { q: 'Convert 45% to a fraction', type: 'Percentages' },
-                { q: 'Simplify: 3x + 2x - 5x', type: 'Algebra' },
-                { q: 'Find the median of: 3, 7, 9, 12, 15', type: 'Statistics' },
-                { q: 'Simplify: (3²)³', type: 'Indices' }
+            // CAT: Section A (10 × 1 mark) + Section B (4 × 5 marks)
+
+            // Section A: 10 questions × 1 mark
+            const sectionA = [
+                { q: `Evaluate using BODMAS: ${figs.n1 * 3} + ${figs.n2} ÷ ${figs.n3} × ${figs.n4}`, type: 'BODMAS' },
+                { q: `Simplify: ${figs.n1}/${figs.n3} + ${figs.n4}/${figs.n5}`, type: 'Fractions' },
+                { q: `Express ${figs.n1 * 10 + figs.n2}% as a decimal`, type: 'Percentages' },
+                { q: `Simplify: ${figs.n1}³ × ${figs.n1}²`, type: 'Indices' },
+                { q: `Solve: ${figs.n2}x + ${figs.n4} = ${figs.n2 * 3 + figs.n4}`, type: 'Algebra' },
+                { q: `Find the next term: ${figs.n1}, ${figs.n1 + figs.d1}, ${figs.n1 + 2 * figs.d1}, ...`, type: 'Sequences' },
+                { q: `Find the mean of: ${figs.n1}, ${figs.n2}, ${figs.n3}, ${figs.n4}, ${figs.n5}`, type: 'Statistics' },
+                { q: `Find: sin(${figs.n10}°) + cos(${figs.n10}°)`, type: 'Trigonometry' },
+                { q: `Find the determinant: [[${figs.matrix_a}, ${figs.matrix_b}], [${figs.matrix_c}, ${figs.matrix_d}]]`, type: 'Matrices' },
+                { q: `Differentiate: y = ${figs.diff_a}x³ - ${figs.diff_b}x² + ${figs.diff_c}x - ${figs.n1}`, type: 'Calculus' }
             ];
 
-            // Randomly select 15 questions
-            const shuffled = [...topics].sort(() => Math.random() - 0.5);
-            const selected = shuffled.slice(0, 15);
-
-            selected.forEach((item, index) => {
-                sectionAQuestions.push({
+            sectionA.forEach((item, index) => {
+                newQuestions.push({
                     id: index + 1,
                     section: 'A',
-                    marks: 2,
+                    marks: 1,
                     question: `${index + 1}. ${item.q}`,
                     type: item.type
                 });
             });
+
+            // Section B: 4 questions × 5 marks
+            const sectionB = [
+                {
+                    q: `Solve the quadratic equation: x² - ${figs.n2 + figs.n3}x + ${figs.n2 * figs.n3} = 0`,
+                    type: 'Algebra',
+                    parts: [
+                        { label: 'a', text: 'Factorise the expression', marks: 2 },
+                        { label: 'b', text: 'Find the roots of the equation', marks: 3 }
+                    ]
+                },
+                {
+                    q: `A right-angled triangle has a hypotenuse of ${figs.n6} cm and an angle of ${figs.n10}°.`,
+                    type: 'Trigonometry',
+                    parts: [
+                        { label: 'a', text: 'Find the side opposite the angle', marks: 2 },
+                        { label: 'b', text: 'Find the side adjacent to the angle', marks: 3 }
+                    ]
+                },
+                {
+                    q: `Given the sequence: ${figs.a1}, ${figs.a1 + figs.d1}, ${figs.a1 + 2 * figs.d1}, ...`,
+                    type: 'Sequences',
+                    parts: [
+                        { label: 'a', text: 'Find the common difference', marks: 1 },
+                        { label: 'b', text: 'Find the nth term', marks: 2 },
+                        { label: 'c', text: `Find the ${figs.termPos1}th term`, marks: 2 }
+                    ]
+                },
+                {
+                    q: `Differentiate: y = ${figs.diff_a}x³ - ${figs.diff_b}x² + ${figs.diff_c}x - ${figs.n1}`,
+                    type: 'Calculus',
+                    parts: [
+                        { label: 'a', text: 'Find dy/dx', marks: 3 },
+                        { label: 'b', text: `Find the gradient when x = ${figs.n1}`, marks: 2 }
+                    ]
+                }
+            ];
+
+            sectionB.forEach((item, index) => {
+                newQuestions.push({
+                    id: 11 + index,
+                    section: 'B',
+                    marks: 5,
+                    question: `${11 + index}. ${item.q}`,
+                    type: item.type,
+                    parts: item.parts
+                });
+            });
+
         } else {
-            // Final Exam: Section A (30 marks) + Section B (40 marks)
-            // Section A: 15 questions × 2 marks = 30 marks
-            const sectionATopics = [
-                { q: 'Evaluate: 18 - 3(4 + 2) ÷ 3', type: 'BODMAS' },
-                { q: 'Simplify: 2/3 + 3/4', type: 'Fractions' },
-                { q: 'Convert 0.75 to a percentage', type: 'Decimals' },
-                { q: 'Solve: 3x + 7 = 22', type: 'Algebra' },
-                { q: 'Find the mean of: 5, 8, 12, 15, 20', type: 'Statistics' },
-                { q: 'Simplify: (x²)³', type: 'Indices' },
-                { q: 'Find the area of a circle with radius 7cm', type: 'Geometry' },
-                { q: 'Solve: 2x - 5 = 13', type: 'Algebra' },
-                { q: 'What is the square root of 144?', type: 'Arithmetic' },
-                { q: 'Simplify: 3/5 + 1/5', type: 'Fractions' },
-                { q: 'Find the perimeter of a rectangle 8cm by 5cm', type: 'Geometry' },
-                { q: 'Convert 45% to a fraction', type: 'Percentages' },
-                { q: 'Simplify: 3x + 2x - 5x', type: 'Algebra' },
-                { q: 'Find the median of: 3, 7, 9, 12, 15', type: 'Statistics' },
-                { q: 'Simplify: (3²)³', type: 'Indices' }
+            // FINAL EXAM: Section A (15 × 2 marks) + Section B (7 × 10 marks)
+
+            // Section A: 15 questions × 2 marks
+            const sectionA = [
+                { q: `Evaluate using BODMAS: ${figs.n1 * 4} - ${figs.n2} ÷ ${figs.n3} × (${figs.n4} + ${figs.n5})`, type: 'BODMAS' },
+                { q: `Simplify: ${figs.n2}/${figs.n4} + ${figs.n3}/${figs.n5}`, type: 'Fractions' },
+                { q: `A shirt costs KSh ${figs.n8}. Find the price after a ${figs.n10}% discount.`, type: 'Percentages' },
+                { q: `Simplify: (${figs.n1}³ × ${figs.n1}⁴) ÷ ${figs.n1}²`, type: 'Indices' },
+                { q: `Solve: log₁₀x = ${figs.n1}`, type: 'Logarithms' },
+                { q: `Simplify: ${figs.n2}x + ${figs.n4} - ${figs.n3}x + ${figs.n5}`, type: 'Algebra' },
+                { q: `Solve: x² - ${figs.n2 + figs.n3}x + ${figs.n2 * figs.n3} = 0`, type: 'Quadratics' },
+                { q: `The angles of a triangle are ${figs.n1}x, ${figs.n2}x, and ${figs.n3}x. Find x.`, type: 'Geometry' },
+                { q: `Calculate: sin(${figs.n10}°) + cos(${figs.n10}°)`, type: 'Trigonometry' },
+                { q: `Find the mean of: ${figs.n1}, ${figs.n2}, ${figs.n3}, ${figs.n4}, ${figs.n5}`, type: 'Statistics' },
+                { q: `A fair die is thrown. Find P(even number)`, type: 'Probability' },
+                { q: `Find the next two terms: ${figs.a1}, ${figs.a1 + figs.d1}, ${figs.a1 + 2 * figs.d1}, ...`, type: 'Sequences' },
+                { q: `Find the determinant: [[${figs.matrix_a}, ${figs.matrix_b}], [${figs.matrix_c}, ${figs.matrix_d}]]`, type: 'Matrices' },
+                { q: `Simplify: (${figs.n1}+${figs.n2}i) + (${figs.n3}-${figs.n4}i)`, type: 'Complex Numbers' },
+                { q: `Differentiate: y = ${figs.diff_a}x⁴ - ${figs.diff_b}x² + ${figs.diff_c}`, type: 'Calculus' }
             ];
 
-            const shuffledA = [...sectionATopics].sort(() => Math.random() - 0.5);
-            const selectedA = shuffledA.slice(0, 15);
-
-            selectedA.forEach((item, index) => {
-                sectionAQuestions.push({
+            sectionA.forEach((item, index) => {
+                newQuestions.push({
                     id: index + 1,
                     section: 'A',
                     marks: 2,
@@ -101,39 +192,89 @@ export default function TestPage() {
                 });
             });
 
-            // Section B: 4 questions × 10 marks = 40 marks
-            const sectionBTopics = [
-                { q: 'Solve the simultaneous equations: 2x + y = 7, x - y = 2', type: 'Algebra' },
-                { q: 'A rectangle has length (x+3) and width (x-2). Find the area.', type: 'Geometry' },
-                { q: 'Find the derivative of f(x) = 3x² - 2x + 1', type: 'Calculus' },
-                { q: 'A population grows at 5% per year. Find the population after 3 years.', type: 'Sequences' },
-                { q: 'Find the equation of a line through (2,3) and (4,7).', type: 'Coordinate Geometry' },
-                { q: 'Solve: x² - 5x + 6 = 0', type: 'Quadratics' },
-                { q: 'Find the standard deviation of: 4, 6, 8, 10, 12', type: 'Statistics' },
-                { q: 'A cylinder has radius 7cm and height 10cm. Find its volume.', type: 'Mensuration' }
+            // Section B: 7 questions × 10 marks
+            const sectionB = [
+                {
+                    q: `Arithmetic Progression: The sum of the ${figs.termPos1}th and ${figs.termPos2}th terms of an AP is ${figs.n2 * figs.n3 + figs.n4 * 2}. Given that the 7th term is ${figs.n4 * 2 + figs.n1}, calculate:`,
+                    type: 'Sequences & Series',
+                    parts: [
+                        { label: 'a', text: 'The common difference', marks: 3 },
+                        { label: 'b', text: 'The first term', marks: 3 },
+                        { label: 'c', text: `The sum of the first ${figs.ap_n} terms of the AP`, marks: 4 }
+                    ]
+                },
+                {
+                    q: `Given that the 1st, 5th, and 13th terms of the AP form the first 3 consecutive terms of a GP, find:`,
+                    type: 'Sequences & Series',
+                    parts: [
+                        { label: 'a', text: 'The common ratio of the GP', marks: 5 },
+                        { label: 'b', text: `The sum of the first ${figs.n2} terms of the GP`, marks: 5 }
+                    ]
+                },
+                {
+                    q: `Vectors: Given vectors a = ${figs.n1}i + ${figs.n2}j and b = ${figs.n3}i - ${figs.n4}j, find:`,
+                    type: 'Vectors',
+                    parts: [
+                        { label: 'a', text: 'a + b', marks: 2 },
+                        { label: 'b', text: '2a - 3b', marks: 3 },
+                        { label: 'c', text: `Find k if ka + b is perpendicular to a - b`, marks: 5 }
+                    ]
+                },
+                {
+                    q: `Matrices: Given A = [[${figs.matrix_a}, ${figs.matrix_b}], [${figs.matrix_c}, ${figs.matrix_d}]] and B = [[${figs.matrix_a + 1}, ${figs.matrix_b - 1}], [${figs.matrix_c + 2}, ${figs.matrix_d - 2}]], find:`,
+                    type: 'Matrices',
+                    parts: [
+                        { label: 'a', text: 'A + B', marks: 3 },
+                        { label: 'b', text: 'A × B', marks: 4 },
+                        { label: 'c', text: 'The determinant of A', marks: 3 }
+                    ]
+                },
+                {
+                    q: `Differentiation: Given f(x) = ${figs.diff_a}x³ - ${figs.diff_b}x² + ${figs.diff_c}x + ${figs.n1}`,
+                    type: 'Calculus',
+                    parts: [
+                        { label: 'a', text: 'Find f\'(x)', marks: 3 },
+                        { label: 'b', text: `Find the stationary points of f(x)`, marks: 4 },
+                        { label: 'c', text: `Determine the nature of the stationary points`, marks: 3 }
+                    ]
+                },
+                {
+                    q: `Integration: Find the following integrals:`,
+                    type: 'Calculus',
+                    parts: [
+                        { label: 'a', text: `∫(${figs.diff_a}x³ - ${figs.diff_b}x² + ${figs.diff_c}) dx`, marks: 5 },
+                        { label: 'b', text: `∫(${figs.diff_a}x + ${figs.diff_b})² dx`, marks: 5 }
+                    ]
+                },
+                {
+                    q: `Application Problem: A company records sales: ${figs.n1 * 10}, ${figs.n1 * 10 + figs.d1 * 10}, ${figs.n1 * 10 + figs.d1 * 20}, ...`,
+                    type: 'Applications',
+                    parts: [
+                        { label: 'a', text: 'Identify the type of sequence', marks: 2 },
+                        { label: 'b', text: `Find the expected sales in the ${figs.termPos1}th month`, marks: 4 },
+                        { label: 'c', text: `Calculate the total sales for the first ${figs.ap_n} months`, marks: 4 }
+                    ]
+                }
             ];
 
-            const shuffledB = [...sectionBTopics].sort(() => Math.random() - 0.5);
-            const selectedB = shuffledB.slice(0, 4);
-
-            selectedB.forEach((item, index) => {
-                sectionBQuestions.push({
+            sectionB.forEach((item, index) => {
+                newQuestions.push({
                     id: 16 + index,
                     section: 'B',
                     marks: 10,
                     question: `${16 + index}. ${item.q}`,
-                    type: item.type
+                    type: item.type,
+                    parts: item.parts
                 });
             });
         }
 
-        setQuestions([...sectionAQuestions, ...sectionBQuestions]);
+        setQuestions(newQuestions);
         setExamGenerated(true);
     };
 
     const downloadPDF = () => {
-        // In a real implementation, this would generate a PDF
-        alert('PDF download would be generated here. You can use libraries like jsPDF or html2pdf.');
+        alert('PDF download will be available soon. You can print the exam using the Print button.');
     };
 
     const printExam = () => {
@@ -150,7 +291,7 @@ export default function TestPage() {
 
                 {/* Exam Controls */}
                 <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mb-8">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
                         <div>
                             <label className="block text-sm font-medium mb-1">Exam Type</label>
                             <select
@@ -159,7 +300,20 @@ export default function TestPage() {
                                 onChange={(e) => setExamType(e.target.value)}
                             >
                                 <option value="cat">CAT (30 marks)</option>
-                                <option value="final">Final Exam (70 marks)</option>
+                                <option value="final">Final Exam (100 marks)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium mb-1">CAT Number</label>
+                            <select
+                                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"
+                                value={examNumber}
+                                onChange={(e) => setExamNumber(Number(e.target.value))}
+                                disabled={examType !== 'cat'}
+                            >
+                                <option value={1}>CAT 1</option>
+                                <option value={2}>CAT 2</option>
+                                <option value={3}>CAT 3</option>
                             </select>
                         </div>
                         <div>
@@ -185,7 +339,7 @@ export default function TestPage() {
                         </div>
                     </div>
                     {examGenerated && (
-                        <div className="flex gap-3">
+                        <div className="flex flex-wrap gap-3">
                             <button
                                 onClick={generateExam}
                                 className="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition flex items-center justify-center gap-2"
@@ -213,20 +367,21 @@ export default function TestPage() {
 
                 {/* Exam Paper */}
                 {examGenerated && (
-                    <div id="exam-paper" className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+                    <div id="exam-paper" className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg print:p-4">
                         <div className="text-center mb-8 border-b pb-4">
                             <h2 className="text-2xl font-bold">{examTitle}</h2>
                             <p className="text-gray-600 dark:text-gray-400">
-                                Time: 2 Hours | Total Marks: {totalMarks}
+                                Time: {examType === 'cat' ? '1 Hour' : '3 Hours'} | Total Marks: {totalMarks}
                             </p>
                             <p className="text-sm text-gray-500">Instructions: Answer ALL questions</p>
                         </div>
 
                         {/* Section A */}
                         <div className="mb-8">
-                            <h3 className="text-xl font-bold mb-4">SECTION A (30 marks)</h3>
+                            <h3 className="text-xl font-bold mb-4">SECTION A</h3>
                             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                                Answer ALL questions in this section. Each question carries 2 marks.
+                                Answer ALL questions in this section.
+                                {examType === 'cat' ? ' Each question carries 1 mark.' : ' Each question carries 2 marks.'}
                             </p>
                             <div className="space-y-2">
                                 {questions.filter(q => q.section === 'A').map((q) => (
@@ -241,18 +396,27 @@ export default function TestPage() {
                         {/* Section B */}
                         {questions.filter(q => q.section === 'B').length > 0 && (
                             <div className="mb-8">
-                                <h3 className="text-xl font-bold mb-4">SECTION B (40 marks)</h3>
+                                <h3 className="text-xl font-bold mb-4">SECTION B</h3>
                                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                                    Answer ALL questions in this section. Each question carries 10 marks.
+                                    Answer ALL questions in this section. Each question carries {examType === 'cat' ? '5' : '10'} marks.
                                 </p>
-                                <div className="space-y-4">
+                                <div className="space-y-6">
                                     {questions.filter(q => q.section === 'B').map((q) => (
                                         <div key={q.id} className="border-b border-gray-200 dark:border-gray-700 py-4">
-                                            <p className="text-sm">{q.question}</p>
-                                            <p className="text-xs text-gray-400 mt-1">[{q.marks} marks]</p>
-                                            <div className="mt-2 text-xs text-gray-400">
+                                            <p className="text-sm font-medium">{q.question}</p>
+                                            {q.parts && (
+                                                <div className="ml-4 mt-2 space-y-1">
+                                                    {q.parts.map((part, idx) => (
+                                                        <p key={idx} className="text-sm text-gray-600 dark:text-gray-400">
+                                                            {String.fromCharCode(97 + idx)}) {part.text}
+                                                            <span className="text-xs text-gray-400 ml-2">[{part.marks} marks]</span>
+                                                        </p>
+                                                    ))}
+                                                </div>
+                                            )}
+                                            <p className="text-xs text-gray-400 mt-2">
                                                 <span className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">{q.type}</span>
-                                            </div>
+                                            </p>
                                         </div>
                                     ))}
                                 </div>
@@ -260,7 +424,7 @@ export default function TestPage() {
                         )}
 
                         <div className="text-center text-sm text-gray-500 border-t pt-4">
-                            © Ngila Academy - {new Date().getFullYear()}
+                            © {schoolName} - {new Date().getFullYear()}
                         </div>
                     </div>
                 )}
