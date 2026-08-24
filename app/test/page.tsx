@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { FileText, Clock, Award, RefreshCw, Download, Printer, BookOpen, GraduationCap, CheckSquare } from 'lucide-react';
+import { FileText, RefreshCw, Download, Printer, BookOpen } from 'lucide-react';
 
 // Question type definitions
 interface ExamQuestion {
@@ -22,7 +22,7 @@ export default function TestPage() {
     const [questions, setQuestions] = useState<ExamQuestion[]>([]);
     const [totalMarks, setTotalMarks] = useState(0);
     const [examTitle, setExamTitle] = useState('');
-    const [schoolName, setSchoolName] = useState('Ngila Academy');
+    const [schoolName, setSchoolName] = useState('');
 
     // Generate random numbers for different exam versions
     const generateRandom = (min: number, max: number) => {
@@ -70,7 +70,7 @@ export default function TestPage() {
         const total = isCAT ? 30 : 60;
         setTotalMarks(total);
 
-        const schools = ['Kahutini Secondary', 'Ngila Academy', 'Kajiado High', 'Mombasa School', 'Nairobi Academy'];
+        const schools = ['Kahutini Secondary', 'Kajiado High', 'Mombasa School', 'Nairobi Academy', 'Kisumu High'];
         const school = schools[Math.floor(Math.random() * schools.length)];
         setSchoolName(school);
 
@@ -82,7 +82,6 @@ export default function TestPage() {
         if (isCAT) {
             // CAT: Section A (10 × 1 mark) + Section B (4 × 5 marks)
 
-            // Section A: 10 questions × 1 mark
             const sectionA = [
                 { q: `Evaluate using BODMAS: ${figs.n1 * 3} + ${figs.n2} ÷ ${figs.n3} × ${figs.n4}`, type: 'BODMAS' },
                 { q: `Simplify: ${figs.n1}/${figs.n3} + ${figs.n4}/${figs.n5}`, type: 'Fractions' },
@@ -106,7 +105,6 @@ export default function TestPage() {
                 });
             });
 
-            // Section B: 4 questions × 5 marks
             const sectionB = [
                 {
                     q: `Solve the quadratic equation: x² - ${figs.n2 + figs.n3}x + ${figs.n2 * figs.n3} = 0`,
@@ -117,11 +115,11 @@ export default function TestPage() {
                     ]
                 },
                 {
-                    q: `A right-angled triangle has a hypotenuse of ${figs.n6} cm and an angle of ${figs.n10}°.`,
+                    q: `A right-angled triangle has a hypotenuse of ${figs.n6} cm and an angle of ${figs.n10}°. (Use π = 22/7)`,
                     type: 'Trigonometry',
                     parts: [
                         { label: 'a', text: 'Find the side opposite the angle', marks: 2 },
-                        { label: 'b', text: 'Find the side adjacent to the angle', marks: 3 }
+                        { label: 'b', text: 'Find the side adjacent to the angle (3 decimal places)', marks: 3 }
                     ]
                 },
                 {
@@ -162,17 +160,17 @@ export default function TestPage() {
 
             const sectionA = [
                 { q: `Evaluate using BODMAS: ${figs.n1 * 4} - ${figs.n2} ÷ ${figs.n3} × (${figs.n4} + ${figs.n5})`, type: 'BODMAS' },
+                { q: `Find the next two terms: ${figs.a1}, ${figs.a1 + figs.d1}, ${figs.a1 + 2 * figs.d1}, ...`, type: 'Sequences' },
+                { q: `Simplify: ${figs.n2}x + ${figs.n4} - ${figs.n3}x + ${figs.n5}`, type: 'Algebra' },
                 { q: `Simplify: ${figs.n2}/${figs.n4} + ${figs.n3}/${figs.n5}`, type: 'Fractions' },
                 { q: `A shirt costs KSh ${figs.n8}. Find the price after a ${figs.n10}% discount.`, type: 'Percentages' },
+                { q: `Differentiate: y = ${figs.diff_a}x⁴ - ${figs.diff_b}x² + ${figs.diff_c}`, type: 'Calculus' },
                 { q: `Simplify: (${figs.n1}³ × ${figs.n1}⁴) ÷ ${figs.n1}²`, type: 'Indices' },
-                { q: `Solve: log₁₀x = ${figs.n1}`, type: 'Logarithms' },
-                { q: `Simplify: ${figs.n2}x + ${figs.n4} - ${figs.n3}x + ${figs.n5}`, type: 'Algebra' },
                 { q: `The angles of a triangle are ${figs.n1}x, ${figs.n2}x, and ${figs.n3}x. Find x.`, type: 'Geometry' },
                 { q: `Find the mean of: ${figs.n1}, ${figs.n2}, ${figs.n3}, ${figs.n4}, ${figs.n5}`, type: 'Statistics' },
                 { q: `Find the determinant: [[${figs.matrix_a}, ${figs.matrix_b}], [${figs.matrix_c}, ${figs.matrix_d}]]`, type: 'Matrices' },
-                { q: `Differentiate: y = ${figs.diff_a}x⁴ - ${figs.diff_b}x² + ${figs.diff_c}`, type: 'Calculus' },
-                { q: `Find the next two terms: ${figs.a1}, ${figs.a1 + figs.d1}, ${figs.a1 + 2 * figs.d1}, ...`, type: 'Sequences' },
-                { q: `Calculate: sin(${figs.n10}°) + cos(${figs.n10}°)`, type: 'Trigonometry' }
+                { q: `Calculate: sin(${figs.n10}°) + cos(${figs.n10}°)`, type: 'Trigonometry' },
+                { q: `Solve: log₁₀x = ${figs.n1}`, type: 'Logarithms' }
             ];
 
             const shuffledA = [...sectionA].sort(() => Math.random() - 0.5);
@@ -194,7 +192,7 @@ export default function TestPage() {
                     q: `Arithmetic Progression: The sum of the ${figs.termPos1}th and ${figs.termPos2}th terms of an AP is ${figs.n2 * figs.n3 + figs.n4 * 2}. Given that the 7th term is ${figs.n4 * 2 + figs.n1}, calculate:`,
                     type: 'Sequences & Series',
                     parts: [
-                        { label: 'a', text: 'The common difference', marks: 3 },
+                        { label: 'a', text: 'The common difference (3 decimal places)', marks: 3 },
                         { label: 'b', text: 'The first term', marks: 3 },
                         { label: 'c', text: `The sum of the first ${figs.ap_n} terms of the AP`, marks: 4 }
                     ]
@@ -204,7 +202,7 @@ export default function TestPage() {
                     type: 'Sequences & Series',
                     parts: [
                         { label: 'a', text: 'The common ratio of the GP', marks: 5 },
-                        { label: 'b', text: `The sum of the first ${figs.n2} terms of the GP`, marks: 5 }
+                        { label: 'b', text: `The sum of the first ${figs.n2} terms of the GP (3 decimal places)`, marks: 5 }
                     ]
                 },
                 {
@@ -213,7 +211,7 @@ export default function TestPage() {
                     parts: [
                         { label: 'a', text: 'a + b', marks: 2 },
                         { label: 'b', text: '2a - 3b', marks: 3 },
-                        { label: 'c', text: `Find k if ka + b is perpendicular to a - b`, marks: 5 }
+                        { label: 'c', text: `Find k if ka + b is perpendicular to a - b (3 decimal places)`, marks: 5 }
                     ]
                 },
                 {
@@ -230,7 +228,7 @@ export default function TestPage() {
                     type: 'Calculus',
                     parts: [
                         { label: 'a', text: 'Find f\'(x)', marks: 3 },
-                        { label: 'b', text: `Find the stationary points of f(x)`, marks: 4 },
+                        { label: 'b', text: `Find the stationary points of f(x) (3 decimal places)`, marks: 4 },
                         { label: 'c', text: `Determine the nature of the stationary points`, marks: 3 }
                     ]
                 },
@@ -255,9 +253,9 @@ export default function TestPage() {
                     q: `A trader buys an item for KSh ${figs.n8 * 2} and marks it at KSh ${figs.n8 * 3}.`,
                     type: 'Financial Mathematics',
                     parts: [
-                        { label: 'a', text: 'Calculate the percentage profit based on the cost price', marks: 2 },
+                        { label: 'a', text: 'Calculate the percentage profit based on the cost price (2 decimal places)', marks: 2 },
                         { label: 'b', text: `The trader gives a ${figs.n10}% discount. Find the selling price`, marks: 4 },
-                        { label: 'c', text: 'Calculate the actual profit percentage after the discount', marks: 4 }
+                        { label: 'c', text: 'Calculate the actual profit percentage after the discount (2 decimal places)', marks: 4 }
                     ]
                 }
             ];
@@ -280,7 +278,7 @@ export default function TestPage() {
     };
 
     const downloadPDF = () => {
-        alert('PDF download will be available soon. You can print the exam using the Print button.');
+        alert('PDF download coming soon. Use the Print button to save as PDF.');
     };
 
     const printExam = () => {
@@ -292,6 +290,7 @@ export default function TestPage() {
 
     // Determine if we're showing CAT or Final
     const isCAT = examType === 'cat';
+    const totalSectionA = sectionAQuestions.reduce((sum, q) => sum + q.marks, 0);
 
     return (
         <main className="min-h-screen py-12">
@@ -377,23 +376,18 @@ export default function TestPage() {
                     )}
                 </div>
 
-                {/* Exam Paper */}
+                {/* Exam Paper - CAT */}
                 {examGenerated && isCAT && (
-                    <div id="exam-paper" className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg print:p-4">
+                    <div id="exam-paper" className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg print:p-4 print:shadow-none">
                         <div className="text-center mb-8 border-b pb-4">
                             <h2 className="text-2xl font-bold">{examTitle}</h2>
-                            <p className="text-gray-600 dark:text-gray-400">
-                                Time: 1 Hour | Total Marks: 30
-                            </p>
-                            <p className="text-sm text-gray-500">Instructions: Answer ALL questions</p>
+                            <p className="text-gray-600 dark:text-gray-400">Time: 1 Hour | Total Marks: 30</p>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">Instructions: Answer ALL questions. Show your workings clearly.</p>
                         </div>
 
-                        {/* Section A */}
                         <div className="mb-8">
                             <h3 className="text-xl font-bold mb-4">SECTION A (10 marks)</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                                Answer ALL questions in this section. Each question carries 1 mark.
-                            </p>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Answer ALL questions in this section. Each question carries 1 mark.</p>
                             <div className="space-y-3">
                                 {sectionAQuestions.map((q) => (
                                     <div key={q.id} className="border-b border-gray-200 dark:border-gray-700 py-3">
@@ -404,13 +398,10 @@ export default function TestPage() {
                             </div>
                         </div>
 
-                        {/* Section B */}
                         {sectionBQuestions.length > 0 && (
                             <div className="mb-8">
                                 <h3 className="text-xl font-bold mb-4">SECTION B (20 marks)</h3>
-                                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                                    Answer ALL questions in this section. Each question carries 5 marks.
-                                </p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Answer ALL questions in this section. Each question carries 5 marks.</p>
                                 <div className="space-y-6">
                                     {sectionBQuestions.map((q) => (
                                         <div key={q.id} className="border-b border-gray-200 dark:border-gray-700 py-4">
@@ -438,22 +429,21 @@ export default function TestPage() {
                     </div>
                 )}
 
+                {/* Exam Paper - Final */}
                 {examGenerated && !isCAT && (
-                    <div id="exam-paper" className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg print:p-4">
+                    <div id="exam-paper" className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg print:p-4 print:shadow-none">
                         <div className="text-center mb-8 border-b pb-4">
                             <h2 className="text-2xl font-bold">{examTitle}</h2>
-                            <p className="text-gray-600 dark:text-gray-400">
-                                Time: 2 Hours | Total Marks: ~60
+                            <p className="text-gray-600 dark:text-gray-400">Time: 2 Hours | Total Marks: 60</p>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                                Instructions: Answer ALL questions in Section A and ANY FOUR questions in Section B. Show your workings clearly.
                             </p>
-                            <p className="text-sm text-gray-500">Instructions: Answer ALL questions in Section A and ANY FOUR questions in Section B</p>
+                            <p className="text-xs text-gray-500 mt-1">Use π = 22/7 where applicable. Round answers to 3 decimal places.</p>
                         </div>
 
-                        {/* Section A */}
                         <div className="mb-8">
-                            <h3 className="text-xl font-bold mb-4">SECTION A</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                                Answer ALL questions in this section. Each question carries 2 or 3 marks.
-                            </p>
+                            <h3 className="text-xl font-bold mb-4">SECTION A ({totalSectionA} marks)</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Answer ALL questions in this section.</p>
                             <div className="space-y-3">
                                 {sectionAQuestions.map((q) => (
                                     <div key={q.id} className="border-b border-gray-200 dark:border-gray-700 py-3">
@@ -464,7 +454,6 @@ export default function TestPage() {
                             </div>
                         </div>
 
-                        {/* Section B */}
                         {sectionBQuestions.length > 0 && (
                             <div className="mb-8">
                                 <h3 className="text-xl font-bold mb-4">SECTION B (40 marks)</h3>
