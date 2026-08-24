@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { User, BookOpen, Send, CheckCircle } from 'lucide-react';
+import { Calendar, Clock, User, BookOpen, Send, CheckCircle, Users, Award, FileText } from 'lucide-react';
 
 export default function TutoringPage() {
     const [formData, setFormData] = useState({
@@ -9,12 +9,16 @@ export default function TutoringPage() {
         email: '',
         phone: '',
         subject: 'mathematics',
-        topic: 'algebra',
         level: 'secondary',
+        tutoringType: 'concept',
+        sessionDuration: '2',
+        topic: '',
         preferredDate: '',
         preferredTime: '',
+        preferredTutor: 'any',
         message: ''
     });
+    const [step, setStep] = useState(1);
     const [submitted, setSubmitted] = useState(false);
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -29,15 +33,21 @@ export default function TutoringPage() {
                 <div className="container mx-auto px-4 max-w-2xl text-center">
                     <div className="bg-green-50 dark:bg-green-900/20 p-8 rounded-xl">
                         <CheckCircle size={64} className="text-green-500 mx-auto mb-4" />
-                        <h2 className="text-2xl font-bold mb-2">Request Sent Successfully!</h2>
+                        <h2 className="text-2xl font-bold mb-2">Booking Confirmed! ✅</h2>
                         <p className="text-gray-600 dark:text-gray-400 mb-4">
-                            Thank you for your tutoring request. We'll contact you within 24 hours.
+                            Your 2-hour session has been booked successfully.
                         </p>
+                        <div className="bg-white dark:bg-gray-800 p-4 rounded-lg text-left mb-6">
+                            <p><strong>Session Type:</strong> {formData.tutoringType}</p>
+                            <p><strong>Duration:</strong> {formData.sessionDuration} hours</p>
+                            <p><strong>Date:</strong> {formData.preferredDate}</p>
+                            <p><strong>Time:</strong> {formData.preferredTime}</p>
+                        </div>
                         <button
                             onClick={() => setSubmitted(false)}
                             className="text-blue-600 hover:underline"
                         >
-                            Submit another request
+                            Book Another Session
                         </button>
                     </div>
                 </div>
@@ -48,12 +58,22 @@ export default function TutoringPage() {
     return (
         <main className="min-h-screen py-12">
             <div className="container mx-auto px-4 max-w-3xl">
-                <h1 className="text-3xl font-bold mb-2">📚 Book a Tutor</h1>
-                <p className="text-gray-600 dark:text-gray-400 mb-8">
-                    Get personalized one-on-one tutoring for Mathematics or Computing.
-                </p>
+                <div className="text-center mb-8">
+                    <h1 className="text-3xl font-bold mb-2">🎓 Book a 2-Hour Mastery Session</h1>
+                    <p className="text-gray-600 dark:text-gray-400">
+                        Master the concept. Master the method. Master the exam.
+                    </p>
+                </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Step Indicator */}
+                    <div className="flex justify-between items-center text-sm">
+                        <span className={step >= 1 ? 'text-blue-600 font-bold' : 'text-gray-400'}>1. Details</span>
+                        <span className={step >= 2 ? 'text-blue-600 font-bold' : 'text-gray-400'}>2. Session</span>
+                        <span className={step >= 3 ? 'text-blue-600 font-bold' : 'text-gray-400'}>3. Confirm</span>
+                    </div>
+
+                    {/* Personal Information */}
                     <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
                         <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
                             <User size={20} />
@@ -93,10 +113,11 @@ export default function TutoringPage() {
                         </div>
                     </div>
 
+                    {/* Session Details */}
                     <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
                         <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
                             <BookOpen size={20} />
-                            Tutoring Details
+                            Session Details
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
@@ -108,17 +129,8 @@ export default function TutoringPage() {
                                 >
                                     <option value="mathematics">Mathematics</option>
                                     <option value="computing">Computing</option>
+                                    <option value="accounting">Accounting</option>
                                 </select>
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium mb-1">Topic</label>
-                                <input
-                                    type="text"
-                                    placeholder="e.g., Algebra, Programming, etc."
-                                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600"
-                                    value={formData.topic}
-                                    onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
-                                />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium mb-1">Level *</label>
@@ -127,13 +139,60 @@ export default function TutoringPage() {
                                     value={formData.level}
                                     onChange={(e) => setFormData({ ...formData, level: e.target.value })}
                                 >
-                                    <option value="primary">Primary School</option>
+                                    <option value="artisan">Artisan</option>
+                                    <option value="craft">Craft</option>
+                                    <option value="diploma">Diploma</option>
+                                    <option value="college">College/University</option>
                                     <option value="secondary">Secondary School</option>
-                                    <option value="college">College / TVET</option>
-                                    <option value="university">University</option>
-                                    <option value="adult">Adult Learner</option>
                                 </select>
                             </div>
+                            <div>
+                                <label className="block text-sm font-medium mb-1">Tutoring Type *</label>
+                                <select
+                                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600"
+                                    value={formData.tutoringType}
+                                    onChange={(e) => setFormData({ ...formData, tutoringType: e.target.value })}
+                                >
+                                    <option value="concept">📖 Concept Lesson</option>
+                                    <option value="exam">✏️ Exam Preparation</option>
+                                    <option value="problem">🧮 Problem-Solving Session</option>
+                                    <option value="assignment">📋 Assignment Support</option>
+                                    <option value="revision">🎯 Revision Programme</option>
+                                    <option value="mock">📝 Mock Examination</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium mb-1">Session Duration *</label>
+                                <select
+                                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600"
+                                    value={formData.sessionDuration}
+                                    onChange={(e) => setFormData({ ...formData, sessionDuration: e.target.value })}
+                                >
+                                    <option value="1">1 hour</option>
+                                    <option value="2">2 hours — College Lesson</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                            <div className="md:col-span-2">
+                                <label className="block text-sm font-medium mb-1">Topic</label>
+                                <input
+                                    type="text"
+                                    placeholder="e.g., Differentiation, Integration, Algebra..."
+                                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600"
+                                    value={formData.topic}
+                                    onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Schedule */}
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+                        <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                            <Calendar size={20} />
+                            Schedule
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium mb-1">Preferred Date *</label>
                                 <input
@@ -144,18 +203,31 @@ export default function TutoringPage() {
                                     onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
                                 />
                             </div>
-                            <div className="md:col-span-2">
-                                <label className="block text-sm font-medium mb-1">Preferred Time</label>
+                            <div>
+                                <label className="block text-sm font-medium mb-1">Preferred Time *</label>
                                 <input
                                     type="time"
+                                    required
                                     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600"
                                     value={formData.preferredTime}
                                     onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
                                 />
                             </div>
+                            <div className="md:col-span-2">
+                                <label className="block text-sm font-medium mb-1">Preferred Tutor</label>
+                                <select
+                                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600"
+                                    value={formData.preferredTutor}
+                                    onChange={(e) => setFormData({ ...formData, preferredTutor: e.target.value })}
+                                >
+                                    <option value="any">Any Available Tutor</option>
+                                    <option value="alex">Alex Ngila</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
+                    {/* Additional Information */}
                     <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
                         <label className="block text-sm font-medium mb-2">Additional Information</label>
                         <textarea
@@ -169,10 +241,10 @@ export default function TutoringPage() {
 
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition flex items-center justify-center gap-2"
+                        className="w-full bg-blue-600 text-white py-4 rounded-xl hover:bg-blue-700 transition flex items-center justify-center gap-2 text-lg"
                     >
                         <Send size={20} />
-                        Request Tutoring
+                        Book 2-Hour Mastery Session
                     </button>
                 </form>
             </div>
