@@ -156,7 +156,17 @@ export function getTopicMetadata(subject: string, topic: string): { name: string
             'complex-numbers': { name: 'Complex Numbers', description: 'Numbers with real and imaginary parts, operations, and applications' },
             'sequences-series': { name: 'Sequences & Series', description: 'Arithmetic and geometric progressions, sums, and applications' },
             calculus: { name: 'Calculus', description: 'Limits, derivatives, integrals, and applications' },
-            statistics: { name: 'Statistics', description: 'Data collection, analysis, probability, and distributions' }
+            statistics: { name: 'Statistics', description: 'Data collection, analysis, probability, and distributions' },
+
+
+            // NEW TOPICS:
+            trigonometry: { name: 'Trigonometry', description: 'Sine, cosine, tangent, and trigonometric identities' },
+            'coordinate-geometry': { name: 'Coordinate Geometry', description: 'Gradients, equations of lines, and graphs' },
+            'financial-mathematics': { name: 'Financial Mathematics', description: 'Interest, profit, discounts, and loans' },
+            probability: { name: 'Probability', description: 'Chance, events, and probability trees' },
+            vectors: { name: 'Vectors', description: 'Vector operations, magnitude, and direction' },
+            'set-theory': { name: 'Set Theory', description: 'Sets, Venn diagrams, and operations on sets' },
+            logarithms: { name: 'Logarithms', description: 'Laws of logarithms, equations, and applications' }
         },
 
 
