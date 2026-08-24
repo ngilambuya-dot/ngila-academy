@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X, BookOpen, PenTool, FileText, User, Award, Video, Search } from 'lucide-react';
+import { Menu, X, BookOpen, PenTool, FileText, User, Award, Video, Search, Calculator } from 'lucide-react';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +23,10 @@ export default function Navbar() {
                             <BookOpen size={18} />
                             Learn
                         </Link>
+                        <Link href="/mathematics" className="flex items-center gap-1 hover:text-blue-600 transition font-semibold text-blue-600">
+                            <Calculator size={18} />
+                            Mathematics
+                        </Link>
                         <Link href="/practice" className="flex items-center gap-1 hover:text-blue-600 transition">
                             <PenTool size={18} />
                             Practice
@@ -39,7 +43,7 @@ export default function Navbar() {
                             <Award size={18} />
                             Mastery
                         </Link>
-                        <Link href="/youtube" className="flex items-center gap-1 hover:text-blue-600 transition">
+                        <Link href="/watch" className="flex items-center gap-1 hover:text-blue-600 transition">
                             <Video size={18} />
                             Watch
                         </Link>
@@ -63,6 +67,9 @@ export default function Navbar() {
                         <Link href="/learn" className="flex items-center gap-2 hover:text-blue-600" onClick={() => setIsOpen(false)}>
                             <BookOpen size={18} /> Learn
                         </Link>
+                        <Link href="/mathematics" className="flex items-center gap-2 hover:text-blue-600 font-semibold text-blue-600" onClick={() => setIsOpen(false)}>
+                            <Calculator size={18} /> Mathematics
+                        </Link>
                         <Link href="/practice" className="flex items-center gap-2 hover:text-blue-600" onClick={() => setIsOpen(false)}>
                             <PenTool size={18} /> Practice
                         </Link>
@@ -75,7 +82,7 @@ export default function Navbar() {
                         <Link href="/mastery" className="flex items-center gap-2 hover:text-blue-600" onClick={() => setIsOpen(false)}>
                             <Award size={18} /> Mastery
                         </Link>
-                        <Link href="/youtube" className="flex items-center gap-2 hover:text-blue-600" onClick={() => setIsOpen(false)}>
+                        <Link href="/watch" className="flex items-center gap-2 hover:text-blue-600" onClick={() => setIsOpen(false)}>
                             <Video size={18} /> Watch
                         </Link>
                         <Link href="/search" className="flex items-center gap-2 hover:text-blue-600" onClick={() => setIsOpen(false)}>
